@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movie List</h1>
+    <div>
+        <button onclick="updateCategory('all')">All</button>
+        <button onclick="updateCategory('Tamil')">Tamil</button>
+        <button onclick="updateCategory('Telugu')">Telugu</button>
+        <button onclick="updateCategory('English')">English</button>
+    </div>
+    
+    
+    <div id="movie_list">
+
+    </div>
+
+
+    <script>
+        const movies = [
+  {
+    title: "Inception",
+    language: "English",
+    genre: "Sci-Fi",
+    director: "Christopher Nolan",
+    releaseYear: 2010
+  },
+  {
+    title: "The Dark Knight",
+    language: "English",
+    genre: "Action",
+    director: "Christopher Nolan",
+    releaseYear: 2008
+  },
+  {
+    title: "Ponniyin Selvan: Part 1",
+    language: "Tamil",
+    genre: "Historical Drama",
+    director: "Mani Ratnam",
+    releaseYear: 2022
+  },
+  {
+    title: "Master",
+    language: "Tamil",
+    genre: "Action Thriller",
+    director: "Lokesh Kanagaraj",
+    releaseYear: 2021
+  },
+  {
+    title: "RRR",
+    language: "Telugu",
+    genre: "Action Drama",
+    director: "S. S. Rajamouli",
+    releaseYear: 2022
+  },
+  {
+    title: "Baahubali: The Beginning",
+    language: "Telugu",
+    genre: "Epic Action",
+    director: "S. S. Rajamouli",
+    releaseYear: 2015
+  }
+];
+
+
+    const movieContainer = document.getElementById("movie_list")
+
+
+
+    function displayMovies(movieList) {
+            movieContainer.innerHTML = ""; // Clear previous movies
+
+            movieList.forEach(movie => {
+                let card = document.createElement('div'); // for card element
+                let cardTitle = document.createElement('h2'); // for card title
+                cardTitle.innerText = movie.title;
+
+                let cardLanguage = document.createElement('p'); // for card language
+                cardLanguage.innerText = `Language: ${movie.language}`;
+
+                // Append all elements to card
+                card.appendChild(cardTitle);
+                card.appendChild(cardLanguage);
+
+                // Add the card to the container
+                movieContainer.appendChild(card);
+            });
+        }
+
+        // Filter movies by category and update display
+        function updateCategory(category) {
+            let filteredMovies;
+            if (category === "all") {
+                filteredMovies = movies;
+            } else {
+                filteredMovies = movies.filter(movie => movie.language === category);
+            }
+            displayMovies(filteredMovies);
+        }
+
+        // Display all movies by default
+        displayMovies(movies);
+
+    </script>
+</body>
+</html>
